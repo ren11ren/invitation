@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --lavender: #c8a8e9;
+  --lavender-light: #e8d5f5;
+  --lavender-dark: #9b6fc8;
+  --pink: #f5b8d0;
+  --pink-light: #fde8f0;
+  --pink-dark: #e87aa8;
+  --purple: #7c3aed;
+  --purple-soft: #a855f7;
+  --baby-blue: #b8d4f0;
+  --cream: #fef9ff;
+  --white-glass: rgba(255, 255, 255, 0.65);
+  --white-glass-border: rgba(255, 255, 255, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Cinzel Decorative', serif;
+}
+
+h4, h5 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--lavender-light); }
+::-webkit-scrollbar-thumb { background: var(--lavender-dark); border-radius: 3px; }
+
+/* Sparkle animation */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(5deg); }
+  66% { transform: translateY(-6px) rotate(-3deg); }
+}
+
+@keyframes butterfly {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  25% { transform: translateX(30px) translateY(-20px) rotate(8deg); }
+  50% { transform: translateX(15px) translateY(-35px) rotate(-5deg); }
+  75% { transform: translateX(-10px) translateY(-15px) rotate(3deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(168,85,247,0.4), 0 0 40px rgba(200,168,233,0.2); }
+  50% { box-shadow: 0 0 40px rgba(168,85,247,0.8), 0 0 80px rgba(200,168,233,0.4); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes bannerSway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes sway {
+  from { transform: rotate(-2.5deg); }
+  to   { transform: rotate(2.5deg); }
+}
+
+@keyframes btfly {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  25%  { transform: translate(20px,-18px) rotate(6deg); }
+  50%  { transform: translate(8px,-30px) rotate(-4deg); }
+  75%  { transform: translate(-12px,-12px) rotate(3deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+.sparkle { animation: sparkle ease-in-out infinite; }
+.float { animation: float ease-in-out infinite; }
+.butterfly-anim { animation: butterfly ease-in-out infinite; }
+.glow-btn { animation: glowPulse 2s ease-in-out infinite; }
+.twinkle { animation: twinkle ease-in-out infinite; }
+.fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+
+.glass-card {
+  background: var(--white-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--white-glass-border);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.12), 0 2px 8px rgba(124, 58, 237, 0.06);
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #9b6fc8, #e87aa8, #7c3aed, #c8a8e9, #e87aa8, #9b6fc8);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.hero-bg {
+  background: linear-gradient(180deg,
+    #2d1b4e 0%,
+    #4a2080 15%,
+    #7b3fc8 30%,
+    #c07ae8 50%,
+    #e8a8d4 70%,
+    #f5d0e8 85%,
+    #fde8f5 100%
+  );
+}
+
+.princess-btn {
+  background: linear-gradient(135deg, #9b6fc8, #c840a0, #a855f7);
+  background-size: 200% 200%;
+  animation: shimmer 3s linear infinite, glowPulse 2s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.princess-btn:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+.section-bg-lavender {
+  background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 50%, #ede9fe 100%);
+}
+
+.countdown-card {
+  background: linear-gradient(135deg, rgba(200,168,233,0.4), rgba(245,184,208,0.4));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 20px;
+}
+
+input, textarea, select {
+  font-family: 'Nunito', sans-serif;
+}
