@@ -2,7 +2,7 @@
   "title": "Elyana Birthday Invitation",
   "description": "A magical birthday invitation website for Elyana Reign's 2nd birthday celebration.",
   "robots": {
-    "index": false
+    "index": true
   },
   "accessibility": {
     "addBypassLinks": false,
