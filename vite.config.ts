@@ -87,6 +87,7 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   const favicon = config.icons?.icon ?? ''
   const socialImage = config.openGraph?.image ?? ''
   const language = sanitizeHtmlValue(config.language) || 'en'
+  const ogLocale = (config.language?.replace(/[^A-Za-z_]/g, '') || 'en_US')
   const googleAnalyticsId = sanitizeHtmlValue(config.analytics?.googleAnalyticsId)
   const headStart = config.customScripts?.headStart ?? ''
   const headEnd = config.customScripts?.headEnd ?? ''
@@ -136,15 +137,23 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
         }
         if (title) {
           tags.push({ tag: 'meta', attrs: { property: 'og:title', content: title }, injectTo: 'head' })
+          tags.push({ tag: 'meta', attrs: { name: 'twitter:title', content: title }, injectTo: 'head' })
         }
         if (description) {
           tags.push({ tag: 'meta', attrs: { property: 'og:description', content: description }, injectTo: 'head' })
+          tags.push({ tag: 'meta', attrs: { name: 'twitter:description', content: description }, injectTo: 'head' })
         }
         if (socialImage) {
           tags.push(
             { tag: 'meta', attrs: { property: 'og:image', content: socialImage }, injectTo: 'head' },
+            { tag: 'meta', attrs: { property: 'og:image:secure_url', content: socialImage }, injectTo: 'head' },
+            { tag: 'meta', attrs: { property: 'og:image:type', content: 'image/png' }, injectTo: 'head' },
+            { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' }, injectTo: 'head' },
+            { tag: 'meta', attrs: { property: 'og:image:height', content: '630' }, injectTo: 'head' },
+            { tag: 'meta', attrs: { property: 'og:image:alt', content: `${title} preview` }, injectTo: 'head' },
             { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' }, injectTo: 'head' },
             { tag: 'meta', attrs: { name: 'twitter:image', content: socialImage }, injectTo: 'head' },
+            { tag: 'meta', attrs: { name: 'twitter:image:alt', content: `${title} preview` }, injectTo: 'head' },
           )
         }
 
