@@ -290,9 +290,9 @@ function RSVPForm() {
         setTimeout(() => setConfetti(false), 4000)
       } else {
         // mailto fallback — opens user's email client prefilled
-        const subject = encodeURIComponent("RSVP: Elyana Reign's 2nd Birthday")
+        const subject = encodeURIComponent("🎉 New RSVP Received for Elyana Reign's Birthday")
         const body = encodeURIComponent(
-          `Name: ${form.name}\nGuests: ${form.guests}\nAttending: ${form.attending}\nMessage: ${form.message}`
+          `Hi Rainier,\n\nA new guest has responded to the invitation for Elyana Reign.\n\nGuest Name: ${form.name}\nAttending: ${form.attending}\nNumber of Guests: ${form.guests}\n\nMessage:\n${form.message || 'No message provided.'}\n\nSent from the Elyana Reign invitation website.`
         )
         const to = EMAIL_CONFIG.TO_EMAIL || ''
         if (!to) {
@@ -703,7 +703,6 @@ function InvitationPage() {
                 {[
                   { icon: '👸', label: 'Celebrant', val: 'Elyana Reign' },
                   { icon: '🎂', label: 'Turning', val: '2 Years Old' },
-                  { icon: '👗', label: 'Dress Code', val: 'Pastel Princess' },
                 ].map(({ icon, label, val }) => (
                   <div key={label} className="flex flex-col items-center px-4" style={{ borderRight: '1px solid rgba(200,168,233,0.2)' }}>
                     <span style={{ fontSize: '1.4rem' }}>{icon}</span>
@@ -711,6 +710,14 @@ function InvitationPage() {
                     <span style={{ fontFamily: "'Cinzel Decorative',serif", fontSize: '0.65rem', color: '#4a2080' }}>{val}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-10 max-w-4xl">
+            <div className="overflow-hidden rounded-[32px] border border-white/70 bg-white/90 shadow-[0_24px_80px_rgba(124,58,237,0.16)]">
+              <div className="bg-[#faf0ff]">
+                <img src="/yana.png" alt="Yana invitation" className="w-full h-auto object-contain block" />
               </div>
             </div>
           </div>
@@ -756,11 +763,7 @@ function InvitationPage() {
                 </div>
               ))}
             </div>
-            <div className="overflow-hidden rounded-[32px] border border-white/70 bg-white/90 shadow-[0_24px_80px_rgba(124,58,237,0.16)]">
-              <div className="bg-[#faf0ff]">
-                <img src="/yana.png" alt="Yana invitation" className="w-full h-auto object-contain block" />
-              </div>
-            </div>
+
           </div>
         </div>
       </Section>

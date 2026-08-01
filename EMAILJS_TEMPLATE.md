@@ -6,19 +6,51 @@ Use this template in your EmailJS dashboard as the email body for the RSVP form.
 Set this value into `src/emailConfig.ts` as `TEMPLATE_ID`.
 
 ## Subject
-New RSVP for Elyana Reign's 2nd Birthday
+🎉 New RSVP Received for Elyana Reign's Birthday
 
 ## Body (HTML)
 
 ```html
-<h1>New RSVP Received</h1>
-<p><strong>Name:</strong> {{name}}</p>
-<p><strong>Guests:</strong> {{guests}}</p>
-<p><strong>Attending:</strong> {{attending}}</p>
-<p><strong>Message:</strong></p>
-<p>{{message}}</p>
-<hr />
-<p>Sent from the Elyana Reign invitation website.</p>
+<div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; max-width: 600px; margin: 0 auto; color: #333;">
+  <div style="font-size: 16px; font-weight: 600; color: #2c3e50; margin-bottom: 8px;">
+    🎉 New RSVP Received!
+  </div>
+
+  <div style="font-size: 13px; color: #666;">
+    A new guest has responded to the invitation for <strong>Elyana Reign</strong>.
+  </div>
+
+  <div style="margin-top: 20px; padding: 15px 0; border-width: 1px 0; border-style: dashed; border-color: #d1d5db;">
+    <table role="presentation" style="width: 100%; border-collapse: collapse;">
+      <tr>
+        <td style="vertical-align: top; width: 50px;">
+          <div style="padding: 8px; margin-right: 12px; background-color: #f0fdf4; border-radius: 50%; font-size: 24px; text-align: center;" role="img">
+            ✉️
+          </div>
+        </td>
+        <td style="vertical-align: top;">
+          <div style="color: #111827; font-size: 18px; font-weight: bold;">
+            {{name}}
+          </div>
+
+          <div style="margin-top: 8px; font-size: 14px; line-height: 1.6;">
+            <p style="margin: 2px 0;"><strong>Attending:</strong> {{attending}}</p>
+            <p style="margin: 2px 0;"><strong>Number of Guests:</strong> {{guests}}</p>
+          </div>
+
+          <div style="margin-top: 12px; padding: 10px 12px; background-color: #f9fafb; border-left: 3px solid #3b82f6; border-radius: 4px;">
+            <div style="font-size: 12px; font-weight: bold; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">Message:</div>
+            <p style="font-size: 14px; color: #374151; margin: 0; white-space: pre-line;">{{message}}</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="margin-top: 16px; font-size: 12px; color: #9ca3af; text-align: center;">
+    Sent from the Elyana Reign invitation website.
+  </div>
+</div>
 ```
 
 ## Notes
