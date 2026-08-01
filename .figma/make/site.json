@@ -5,7 +5,7 @@
     "index": true
   },
   "openGraph": {
-    "image": "https://invitation-six-lake.vercel.app/yana.png"
+    "image": "https://invitation-six-lake.vercel.app/og-image.png"
   },
   "accessibility": {
     "addBypassLinks": false,
