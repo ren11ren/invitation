@@ -683,7 +683,65 @@ function LandingPage({ onOpen }: { onOpen: () => void }) {
   )
 }
 
-// ─── PAGE 2: Main Invitation ───────────────────────────────────────────────────
+// ─── PAGE 2: Website Overview ───────────────────────────────────────────────
+function WebsiteOverviewPage({ onOpen, onBackToLanding }: { onOpen: () => void; onBackToLanding: () => void }) {
+  const highlights = [
+    { icon: '👑', title: 'Welcome', description: 'A warm opening that introduces the celebration and the birthday princess.' },
+    { icon: '⏳', title: 'Countdown', description: 'A live countdown that builds excitement for the big day.' },
+    { icon: '✨', title: 'Event Details', description: 'A clear overview of the date, time, and venue.' },
+    { icon: '📖', title: 'Story', description: 'A heartfelt message from the family to the guests.' },
+    { icon: '🖼️', title: 'Gallery', description: 'A dreamy glimpse of the celebration visuals and mood.' },
+    { icon: '💌', title: 'RSVP', description: 'An easy way for guests to respond and send their love.' },
+  ]
+
+  return (
+    <div className="min-h-screen px-4 py-10 md:py-16 flex items-center justify-center" style={{ background: 'linear-gradient(135deg,#0f0520 0%,#2d1b4e 30%,#6d28d9 70%,#f3e8ff 100%)' }}>
+      <div className="w-full max-w-6xl rounded-[36px] border border-white/30 bg-white/15 backdrop-blur-2xl p-6 md:p-10 shadow-[0_30px_90px_rgba(15,5,32,0.45)]">
+        <div className="text-center mb-8 md:mb-10">
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-4" style={{ background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.24)' }}>
+            <span style={{ fontSize: '0.9rem' }}>✨</span>
+            <span style={{ fontFamily: "'Nunito',sans-serif", fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#fce7f3' }}>Website Overview</span>
+          </div>
+          <h1 style={{ fontFamily: "'Cinzel Decorative',serif", fontSize: 'clamp(1.7rem,4vw,2.8rem)', color: 'white', lineHeight: 1.15, marginBottom: '0.75rem' }}>
+            A magical preview of the birthday invitation experience
+          </h1>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', color: '#f5d0e8', fontSize: '1rem', maxWidth: '720px', margin: '0 auto', lineHeight: 1.8 }}>
+            This overview gives visitors a quick look at the celebration flow so the website feels polished and easy to explore from the first click.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {highlights.map((item) => (
+            <div key={item.title} className="rounded-[24px] p-5" style={{ background: 'rgba(255,255,255,0.16)', border: '1px solid rgba(255,255,255,0.22)', boxShadow: '0 12px 32px rgba(15,5,32,0.18)' }}>
+              <div style={{ fontSize: '1.7rem', marginBottom: '0.6rem' }}>{item.icon}</div>
+              <h2 style={{ fontFamily: "'Cinzel Decorative',serif", fontSize: '1rem', color: 'white', marginBottom: '0.35rem' }}>{item.title}</h2>
+              <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: '0.9rem', color: '#fce7f3', lineHeight: 1.7 }}>{item.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button
+            onClick={onOpen}
+            className="rounded-2xl px-7 py-3 text-white font-semibold transition-transform duration-200 hover:scale-105"
+            style={{ fontFamily: "'Cinzel Decorative',serif", background: 'linear-gradient(135deg,#9b6fc8,#c840a0,#7c3aed)', boxShadow: '0 10px 35px rgba(168,85,247,0.35)' }}
+          >
+            Open Full Invitation
+          </button>
+          <button
+            onClick={onBackToLanding}
+            className="rounded-2xl px-7 py-3 text-white/90 font-semibold transition-transform duration-200 hover:scale-105"
+            style={{ fontFamily: "'Nunito',sans-serif", background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.24)' }}
+          >
+            View Entrance Page
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── PAGE 3: Main Invitation ───────────────────────────────────────────────────
 function InvitationPage() {
   return (
     <div style={{ background: '#faf5ff' }}>
@@ -834,7 +892,7 @@ function InvitationPage() {
 
 
       {/* ── THANK YOU ── */}
-      <Section style={{ background: 'linear-gradient(180deg,#1a0e30,#2d1b4e)', padding: '6rem 1rem', position: 'relative', overflow: 'hidden' }}>
+      <Section id="thank-you" style={{ background: 'linear-gradient(180deg,#1a0e30,#2d1b4e)', padding: '6rem 1rem', position: 'relative', overflow: 'hidden' }}>
         {/* Twinkling stars */}
         {Array.from({ length: 30 }, (_, i) => (
           <div key={i} className="absolute pointer-events-none" style={{
@@ -876,7 +934,7 @@ function InvitationPage() {
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [page, setPage] = useState<'landing' | 'invitation'>('landing')
+  const [page, setPage] = useState<'landing' | 'overview' | 'invitation'>('overview')
 
   const handleOpen = useCallback(() => {
     setPage('invitation')
@@ -886,6 +944,7 @@ export default function App() {
   return (
     <>
       {page === 'landing' && <LandingPage onOpen={handleOpen} />}
+      {page === 'overview' && <WebsiteOverviewPage onOpen={handleOpen} onBackToLanding={() => setPage('landing')} />}
       {page === 'invitation' && <InvitationPage />}
     </>
   )
