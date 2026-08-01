@@ -1,8 +1,11 @@
 {
-  "title": "Elyana Birthday Invitation",
-  "description": "A magical birthday invitation website for Elyana Reign's 2nd birthday celebration.",
+  "title": "Elyana Reign's 2nd Birthday Invitation",
+  "description": "Join the royal celebration for Elyana Reign's 2nd birthday with event details, countdown, memories, and RSVP.",
   "robots": {
     "index": true
+  },
+  "openGraph": {
+    "image": "https://invitation-six-lake.vercel.app/og-image.png"
   },
   "accessibility": {
     "addBypassLinks": false,
