@@ -751,7 +751,6 @@ function InvitationPage() {
                 { icon: '📅', label: 'Date', primary: 'Saturday', secondary: 'August 29, 2026', accent: '#c8a8e9' },
                 { icon: '🕛', label: 'Time', primary: '12:00 PM', secondary: 'Lunch Celebration', accent: '#f5b8d0' },
                 { icon: '📍', label: 'Venue', primary: 'Pitpitac', secondary: 'Luna, La Union', accent: '#b8d4f0' },
-                { icon: '👗', label: 'Dress Code', primary: 'Pastel', secondary: 'Princess Attire', accent: '#fde8f0' },
               ].map(({ icon, label, primary, secondary, accent }) => (
                 <div key={label} className="flex flex-col items-center text-center p-5 rounded-3xl"
                   style={{ background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(12px)', border: `1px solid ${accent}`, boxShadow: '0 4px 24px rgba(124,58,237,0.08)', borderTop: `3px solid ${accent}` }}
@@ -878,30 +877,16 @@ function InvitationPage() {
 // ─── Root ─────────────────────────────────────────────────────────────────────
 export default function App() {
   const [page, setPage] = useState<'landing' | 'invitation'>('landing')
-  const [navVisible, setNavVisible] = useState(false)
 
   const handleOpen = useCallback(() => {
     setPage('invitation')
-    setNavVisible(true)
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50)
   }, [])
-
-  useEffect(() => {
-    if (page !== 'invitation') return
-    const handler = () => setNavVisible(window.scrollY > 80)
-    window.addEventListener('scroll', handler, { passive: true })
-    return () => window.removeEventListener('scroll', handler)
-  }, [page])
 
   return (
     <>
       {page === 'landing' && <LandingPage onOpen={handleOpen} />}
-      {page === 'invitation' && (
-        <>
-          <InvitationPage />
-          <FloatingNav visible={navVisible} />
-        </>
-      )}
+      {page === 'invitation' && <InvitationPage />}
     </>
   )
 }
