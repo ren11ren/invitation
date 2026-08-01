@@ -807,25 +807,46 @@ function InvitationPage() {
       </Section>
 
       {/* ── LOCATION ── */}
-      <Section id="location" style={{ background: 'white', padding: '5rem 1rem' }}>
-        <div className="max-w-2xl mx-auto">
-          <SectionHead icon="📍" title="Find the Royal Venue" subtitle="Join us in this magical location" />
-          <div style={{ borderRadius: 28, overflow: 'hidden', boxShadow: '0 8px 40px rgba(124,58,237,0.15)', border: '1px solid rgba(200,168,233,0.3)' }}>
-            <iframe
-              title="Venue – Pitpitac, Luna, La Union"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30591.7!2d120.3756!3d16.8504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33919f4d74b2b7ef%3A0x7db2ea9c21bdd6cc!2sLuna%2C%20La%20Union!5e0!3m2!1sen!2sph!4v1690000000000!5m2!1sen!2sph"
-              width="100%" height="320" style={{ border: 0, display: 'block' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-            />
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-6 py-5" style={{ background: 'linear-gradient(135deg,rgba(243,232,255,0.8),rgba(252,231,243,0.8))' }}>
-              <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', color: '#4a2080', fontSize: '0.95rem' }}>
-                📍 Pitpitac, Luna, La Union, Philippines
-              </p>
-              <a href="https://maps.google.com/?q=Luna,La+Union,Philippines" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-white font-semibold text-sm no-underline transition-transform duration-200 hover:scale-105"
-                style={{ fontFamily: "'Nunito',sans-serif", background: 'linear-gradient(135deg,#9b6fc8,#c840a0)', boxShadow: '0 4px 16px rgba(168,85,247,0.3)' }}
-              >
-                🗺️ Get Directions
-              </a>
+      <Section id="location" style={{ background: 'linear-gradient(160deg,#fdf2f8,#f5f3ff)', padding: '5rem 1rem' }}>
+        <div className="max-w-4xl mx-auto">
+          <SectionHead icon="📍" title="Find the Royal Venue" subtitle="A little map guide to our celebration place" />
+          <div className="overflow-hidden rounded-[32px] border border-purple-200/70 bg-white/90 shadow-[0_24px_80px_rgba(124,58,237,0.14)]">
+            <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="p-6 md:p-8 bg-gradient-to-br from-[#f7ebff] via-[#fdf2f8] to-[#eef2ff]">
+                <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-4" style={{ background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.18)' }}>
+                  <span style={{ fontSize: '0.9rem' }}>✨</span>
+                  <span style={{ fontFamily: "'Nunito',sans-serif", fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7c3aed' }}>Venue Details</span>
+                </div>
+                <h3 style={{ fontFamily: "'Cinzel Decorative',serif", fontSize: '1.2rem', color: '#3b1f6e', marginBottom: '0.8rem' }}>Pitpitac, Luna, La Union</h3>
+                <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', color: '#6d28d9', lineHeight: 1.8, marginBottom: '1rem' }}>
+                  We would love for you to join us at this special place where family, laughter, and warm memories will fill the air.
+                </p>
+                <div className="space-y-3">
+                  {[
+                    { label: 'Address', value: 'Pitpitac, Luna, La Union, Philippines' },
+                    { label: 'Celebration', value: 'Lunch Party • 12:00 PM' },
+                    { label: 'Theme', value: 'Royal Garden & Sweet Memories' },
+                  ].map((item) => (
+                    <div key={item.label} className="rounded-2xl border border-white/70 px-4 py-3" style={{ background: 'rgba(255,255,255,0.72)' }}>
+                      <div style={{ fontFamily: "'Nunito',sans-serif", fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#9b6fc8', marginBottom: '0.25rem' }}>{item.label}</div>
+                      <div style={{ fontFamily: "'Cinzel Decorative',serif", fontSize: '0.82rem', color: '#3b1f6e' }}>{item.value}</div>
+                    </div>
+                  ))}
+                </div>
+                <a href="https://maps.google.com/?q=Luna,La+Union,Philippines" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white font-semibold text-sm no-underline transition-transform duration-200 hover:scale-105 mt-5"
+                  style={{ fontFamily: "'Nunito',sans-serif", background: 'linear-gradient(135deg,#9b6fc8,#c840a0)', boxShadow: '0 8px 24px rgba(168,85,247,0.3)' }}
+                >
+                  🗺️ Open in Google Maps
+                </a>
+              </div>
+              <div className="min-h-[320px]">
+                <iframe
+                  title="Venue – Pitpitac, Luna, La Union"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30591.7!2d120.3756!3d16.8504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33919f4d74b2b7ef%3A0x7db2ea9c21bdd6cc!2sLuna%2C%20La%20Union!5e0!3m2!1sen!2sph!4v1690000000000!5m2!1sen!2sph"
+                  width="100%" height="100%" style={{ border: 0, display: 'block', minHeight: 320 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
           </div>
         </div>
