@@ -53,8 +53,10 @@ type FigmaSiteConfiguration = {
   icons?: {
     icon?: string
   }
+  url?: string
   openGraph?: {
     image?: string
+    type?: string
   }
   analytics?: {
     googleAnalyticsId?: string
@@ -85,7 +87,9 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   const title = config.title ?? "ELYANA Birthday invitation"
   const description = config.description ?? ''
   const favicon = config.icons?.icon ?? ''
+  const siteUrl = config.url ?? process.env.VITE_SITE_URL ?? 'https://invitation-six-lake.vercel.app/'
   const socialImage = config.openGraph?.image ?? ''
+  const socialType = config.openGraph?.type ?? 'website'
   const language = sanitizeHtmlValue(config.language) || 'en'
   const ogLocale = (config.language?.replace(/[^A-Za-z_]/g, '') || 'en_US')
   const googleAnalyticsId = sanitizeHtmlValue(config.analytics?.googleAnalyticsId)
@@ -129,6 +133,12 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
         if (description) {
           tags.push({ tag: 'meta', attrs: { name: 'description', content: description }, injectTo: 'head' })
         }
+        if (siteUrl) {
+          tags.push({ tag: 'meta', attrs: { property: 'og:url', content: siteUrl }, injectTo: 'head' })
+        }
+        if (socialType) {
+          tags.push({ tag: 'meta', attrs: { property: 'og:type', content: socialType }, injectTo: 'head' })
+        }
         if (config.robots?.index === false) {
           tags.push({ tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' }, injectTo: 'head' })
         }
@@ -144,10 +154,13 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
           tags.push({ tag: 'meta', attrs: { name: 'twitter:description', content: description }, injectTo: 'head' })
         }
         if (socialImage) {
+          const imageType = socialImage.match(/\.(jpe?g|png|webp)$/i)?.[1]
+          const normalizedImageType = imageType === 'jpg' || imageType === 'jpeg' ? 'image/jpeg' : imageType === 'png' ? 'image/png' : imageType === 'webp' ? 'image/webp' : 'image/jpeg'
+
           tags.push(
             { tag: 'meta', attrs: { property: 'og:image', content: socialImage }, injectTo: 'head' },
             { tag: 'meta', attrs: { property: 'og:image:secure_url', content: socialImage }, injectTo: 'head' },
-            { tag: 'meta', attrs: { property: 'og:image:type', content: 'image/png' }, injectTo: 'head' },
+            { tag: 'meta', attrs: { property: 'og:image:type', content: normalizedImageType }, injectTo: 'head' },
             { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' }, injectTo: 'head' },
             { tag: 'meta', attrs: { property: 'og:image:height', content: '630' }, injectTo: 'head' },
             { tag: 'meta', attrs: { property: 'og:image:alt', content: `${title} preview` }, injectTo: 'head' },
