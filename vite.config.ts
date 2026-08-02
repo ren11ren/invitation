@@ -154,7 +154,7 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
           tags.push({ tag: 'meta', attrs: { name: 'twitter:description', content: description }, injectTo: 'head' })
         }
         if (socialImage) {
-          const imageType = socialImage.match(/\.(jpe?g|png|webp)$/i)?.[1]
+          const imageType = socialImage.match(/\.(jpe?g|png|webp)(?:\?.*)?$/i)?.[1]
           const normalizedImageType = imageType === 'jpg' || imageType === 'jpeg' ? 'image/jpeg' : imageType === 'png' ? 'image/png' : imageType === 'webp' ? 'image/webp' : 'image/png'
 
           tags.push(
